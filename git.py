@@ -47,11 +47,11 @@ class Git:
             return;
         else:
             return process
-    def _get_commit_number(self):
+    def _get_commit_message(self):
         if len(self.commit_numbers)!=0 and self.commit_numbers[0].isdigit():
-            return (int(self.commit_numbers[0])+1)
+            return "'Commit " + str((int(self.commit_numbers[0])+1)) + "'"
         else:
-            return 1
+            return "'Commit 1'"
     def _log_messages_local(self,output=False):
         return self._run_local_command(self.commands["git-log"],output)
     def status_local(self):
@@ -59,7 +59,8 @@ class Git:
     def add_local(self):
         return self._run_local_command(self.commands["git-add"])
     def commit_local(self):
-        return self._run_local_command(self.commands["git-commit"]+str(self._get_commit_number()))
+        print(self.commands["git-commit"]+str(self._get_commit_message()))
+        return self._run_local_command(self.commands["git-commit"]+str(self._get_commit_message()))
     #def push_local(self):
     #def pull_remote(self):
     
