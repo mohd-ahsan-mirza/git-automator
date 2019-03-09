@@ -5,6 +5,7 @@
 # https://USERNAME:PASS@github.com/USERNAME/REPONAME.git
 # It is recommended that you do the first push manually to set the upstream branch
 # git push --set-upstream origin master
+# Note: If there are multiple people modifying the same branch this automator might nor work
 import subprocess
 import paramiko
 import sys
@@ -24,6 +25,7 @@ class Git:
             "git-commit": "git commit -m ",
             "git-log": "git log --pretty=oneline --abbrev-commit",
             "git-push": "git push origin",
+            "directory-list":"ls"
         }
         self.commit_numbers = []
         for line in self._log_messages_local().stdout.readlines():
@@ -38,7 +40,7 @@ class Git:
         except Exception as e:
             sys.stderr.write("SSH connection error: {0}".format(e).decode('utf-8'))
         if ssh_stdout:
-            sys.stdout.write(ssh_stdout.read().decode('utf-8'))
+            #sys.stdout.write(ssh_stdout.read().decode('utf-8'))
             return ssh
         else:
             return False
@@ -52,6 +54,13 @@ class Git:
             return;
         else:
             return process
+    def _run_remote_command(self,command,output=True):
+        try:
+            ssh_stdin, ssh_stdout, ssh_stderr = self.ssh.exec_command(command)
+        except Exception as e:
+            sys.stderr.write("SSH connection error: {0}".format(e).decode('utf-8'))
+        if ssh_stdout:
+            sys.stdout.write(ssh_stdout.read().decode('utf-8'))
     def _get_commit_message(self):
         if len(self.commit_numbers)!=0 and self.commit_numbers[0].isdigit():
             return "'Commit " + str((int(self.commit_numbers[0])+1)) + "'"
@@ -67,6 +76,7 @@ class Git:
         return self._run_local_command(self.commands["git-commit"]+str(self._get_commit_message()))
     def push_local(self):
         return self._run_local_command(self.commands["git-push"]+" "+os.getenv("WORKING_BRANCH"))
-    #def pull_remote(self):
+    def pull_remote(self):
+        return _self._run_local_command(self.commands["directory-list"])
 
     
