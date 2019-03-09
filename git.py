@@ -55,6 +55,7 @@ class Git:
         else:
             return process
     def _run_remote_command(self,command,output=True):
+        ssh_stdin = ssh_stdout = ssh_stderr = None
         try:
             ssh_stdin, ssh_stdout, ssh_stderr = self.ssh.exec_command(command)
         except Exception as e:
