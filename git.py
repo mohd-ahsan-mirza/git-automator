@@ -59,7 +59,6 @@ class Git:
     def add_local(self):
         return self._run_local_command(self.commands["git-add"])
     def commit_local(self):
-        print(self.commands["git-commit"]+str(self._get_commit_message()))
         return self._run_local_command(self.commands["git-commit"]+str(self._get_commit_message()))
     #def push_local(self):
     #def pull_remote(self):
