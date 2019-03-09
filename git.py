@@ -17,7 +17,8 @@ class Git:
         self.commands = {
             "git-status":"git status",
             "git-add":"git add .",
-            "git-commit": "git commit ."
+            "git-commit": "git commit -m",
+            "git-log": "git log --pretty=oneline --abbrev-commit"
         }
     def _setup_ssh_connection(self):
         ssh = paramiko.SSHClient()
@@ -45,6 +46,8 @@ class Git:
         self._run_local_command(self.commands["git-add"])
     def commit_local(self):
         self._run_local_command(self.commands["git-commit"])
+    def _log_messages_local(self):
+        self._run_local_command(self.commands["git-log"])
     #def push_local(self):
     #def pull_remote(self):
     
