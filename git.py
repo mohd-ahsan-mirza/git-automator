@@ -23,7 +23,7 @@ class Git:
             "git-add":"git add .",
             "git-commit": "git commit -m ",
             "git-log": "git log --pretty=oneline --abbrev-commit",
-            "git-push": "git push"
+            "git-push": "git push origin"
         }
         self.commit_numbers = []
         for line in self._log_messages_local().stdout.readlines():
