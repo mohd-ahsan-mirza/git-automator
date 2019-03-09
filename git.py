@@ -51,7 +51,7 @@ class Git:
         process = subprocess.Popen(os.getenv("CHANGE_TO_PROJECT_DIRECTORY")+";"+command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
         if(output):
             self._output_process(process)
-            return;
+            return
         else:
             return process
     def _run_remote_command(self,command,output=True):
@@ -61,7 +61,11 @@ class Git:
         except Exception as e:
             sys.stderr.write("SSH connection error: {0}".format(e).decode('utf-8'))
         if ssh_stdout:
-            sys.stdout.write(ssh_stdout.read().decode('utf-8'))
+            if(output):
+                sys.stdout.write(ssh_stdout.read().decode('utf-8'))
+                return
+            else:
+                return sys.stdout
     def _get_commit_message(self):
         if len(self.commit_numbers)!=0 and self.commit_numbers[0].isdigit():
             return "'Commit " + str((int(self.commit_numbers[0])+1)) + "'"
@@ -78,6 +82,6 @@ class Git:
     def push_local(self):
         return self._run_local_command(self.commands["git-push"]+" "+os.getenv("WORKING_BRANCH"))
     def pull_remote(self):
-        return self._run_remote_command(self.commands["directory-list"])
+        return self._run_remote_command("cd "+os.getenv("REMOTE_DIRECTORY")+";ls")
 
     
