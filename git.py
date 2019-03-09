@@ -66,6 +66,6 @@ class Git:
     def commit_local(self):
         return self._run_local_command(self.commands["git-commit"]+str(self._get_commit_message()))
     def push_local(self):
-        return self._run_local_command(self.commands["git-commit"]+" "+os.getenv("WORKING_DIRECTORY"))
+        return self._run_local_command(self.commands["git-commit"]+" "+os.getenv("WORKING_BRANCH"))
     #def pull_remote(self):
     
