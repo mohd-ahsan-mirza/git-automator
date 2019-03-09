@@ -2,6 +2,7 @@
 #CI/CD Pipeline tool
 
 This tool automates git add, commit, push and pull.
+Copy the .env.template to .env and fill out the mandatory fields in the file
 
 Make sure the repo on github has been initialized<br/>
 It is recommeded that you make the first commit manually with message "Commit 1"<br/>
