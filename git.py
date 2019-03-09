@@ -40,7 +40,7 @@ class Git:
         except Exception as e:
             sys.stderr.write("SSH connection error: {0}".format(e).decode('utf-8'))
         if ssh_stdout:
-            sys.stdout.write(ssh_stdout.read().decode('utf-8'))
+            #sys.stdout.write(ssh_stdout.read().decode('utf-8'))
             return ssh
         else:
             return False
