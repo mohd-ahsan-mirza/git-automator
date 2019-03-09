@@ -25,7 +25,8 @@ class Git:
             "git-commit": "git commit -m ",
             "git-log": "git log --pretty=oneline --abbrev-commit",
             "git-push": "git push origin",
-            "directory-list":"ls"
+            "directory-list":"ls",
+            "git-pull": "git pull origin"
         }
         self.commit_numbers = []
         for line in self._log_messages_local().stdout.readlines():
@@ -82,6 +83,6 @@ class Git:
     def push_local(self):
         return self._run_local_command(self.commands["git-push"]+" "+os.getenv("WORKING_BRANCH"))
     def pull_remote(self):
-        return self._run_remote_command("cd "+os.getenv("REMOTE_DIRECTORY")+";ls")
+        return self._run_remote_command("cd "+os.getenv("REMOTE_DIRECTORY")+";"+self.commands["git-push"]+" "+os.getenv("WORKING_BRANCH"))
 
     
