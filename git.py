@@ -83,6 +83,6 @@ class Git:
     def push_local(self):
         return self._run_local_command(self.commands["git-push"]+" "+os.getenv("WORKING_BRANCH"))
     def pull_remote(self):
-        return self._run_remote_command("cd "+os.getenv("REMOTE_DIRECTORY")+";"+self.commands["git-push"]+" "+os.getenv("WORKING_BRANCH"))
+        return self._run_remote_command("cd "+os.getenv("REMOTE_DIRECTORY")+";"+self.commands["git-pull"]+" "+os.getenv("WORKING_BRANCH"))
 
     
