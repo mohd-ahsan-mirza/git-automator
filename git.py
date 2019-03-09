@@ -1,11 +1,3 @@
-# Make sure the repo on github has been initialized
-# It is recommeded that you make the first commit manually with message "Commit 1"
-# Make sure the repo has been initialized and pulled on both local and remote server
-# Make sure the remote origin url is set with password
-# https://USERNAME:PASS@github.com/USERNAME/REPONAME.git
-# It is recommended that you do the first push manually to set the upstream branch
-# git push --set-upstream origin master
-# Note: If there are multiple people modifying the same branch this automator might nor work
 import subprocess
 import paramiko
 import sys
@@ -49,21 +41,31 @@ class Git:
         for line in process.stdout.readlines():
             print(line.decode())
     def _run_local_command(self,command,output=True):
-        process = subprocess.Popen(os.getenv("CHANGE_TO_PROJECT_DIRECTORY")+";"+command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+        command = os.getenv("CHANGE_TO_PROJECT_DIRECTORY")+";"+command
+        process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
         if(output):
+            print("---------------------------")
+            print("Command --> "+command)
+            print("---------------------------")
             self._output_process(process)
+            print("---------------------------")
             return
         else:
             return process
     def _run_remote_command(self,command,output=True):
         ssh_stdin = ssh_stdout = ssh_stderr = None
+        command = os.getenv("CHANGE_TO_REMOTE_DIRECTORY")+";"+command
         try:
             ssh_stdin, ssh_stdout, ssh_stderr = self.ssh.exec_command(command)
         except Exception as e:
             sys.stderr.write("SSH connection error: {0}".format(e).decode('utf-8'))
         if ssh_stdout:
             if(output):
+                print("---------------------------")
+                print("Command --> "+command)
+                print("---------------------------")
                 sys.stdout.write(ssh_stdout.read().decode('utf-8'))
+                print("---------------------------")
                 return
             else:
                 return sys.stdout
@@ -82,7 +84,9 @@ class Git:
         return self._run_local_command(self.commands["git-commit"]+str(self._get_commit_message()))
     def push_local(self):
         return self._run_local_command(self.commands["git-push"]+" "+os.getenv("WORKING_BRANCH"))
+    def pull_local(self):
+        return self._run_local_command(self.commands["git-pull"]+" "+os.getenv("WORKING_BRANCH"))
     def pull_remote(self):
-        return self._run_remote_command("cd "+os.getenv("REMOTE_DIRECTORY")+";"+self.commands["git-pull"]+" "+os.getenv("WORKING_BRANCH"))
+        return self._run_remote_command(self.commands["git-pull"]+" "+os.getenv("WORKING_BRANCH"))
 
     
