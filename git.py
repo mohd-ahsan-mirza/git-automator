@@ -3,6 +3,8 @@
 # Make sure the repo has been initialized and pulled on both local and remote server
 # Make sure the remote origin url is set with password
 # https://USERNAME:PASS@github.com/USERNAME/REPONAME.git
+# It is recommended that you do the first push manually to set the upstream branch
+# git push --set-upstream origin master
 import subprocess
 import paramiko
 import sys
@@ -20,7 +22,8 @@ class Git:
             "git-status":"git status",
             "git-add":"git add .",
             "git-commit": "git commit -m ",
-            "git-log": "git log --pretty=oneline --abbrev-commit"
+            "git-log": "git log --pretty=oneline --abbrev-commit",
+            "git-push": "git push origin "
         }
         self.commit_numbers = []
         for line in self._log_messages_local().stdout.readlines():
@@ -62,6 +65,7 @@ class Git:
         return self._run_local_command(self.commands["git-add"])
     def commit_local(self):
         return self._run_local_command(self.commands["git-commit"]+str(self._get_commit_message()))
-    #def push_local(self):
+    def push_local(self):
+        return self._run_local_command(self.commands["git-commit"]+" "+os.getenv("WORKING_DIRECTORY"))
     #def pull_remote(self):
     
