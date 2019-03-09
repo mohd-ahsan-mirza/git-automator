@@ -17,9 +17,12 @@ class Git:
         self.commands = {
             "git-status":"git status",
             "git-add":"git add .",
-            "git-commit": "git commit -m",
+            "git-commit": "git commit -m ",
             "git-log": "git log --pretty=oneline --abbrev-commit"
         }
+        self.commit_numbers = []
+        for line in self._log_messages_local().stdout.readlines():
+            self.commit_numbers.append(line.decode().split()[-1])
     def _setup_ssh_connection(self):
         ssh = paramiko.SSHClient()
         ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
@@ -37,17 +40,26 @@ class Git:
     def _output_process(self,process):
         for line in process.stdout.readlines():
             print(line.decode())
-    def _run_local_command(self,command):
+    def _run_local_command(self,command,output=True):
         process = subprocess.Popen(os.getenv("CHANGE_TO_PROJECT_DIRECTORY")+";"+command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
-        self._output_process(process)
+        if(output):
+            self._output_process(process)
+            return;
+        else:
+            return process
+    def _get_commit_number(self):
+        if len(self.commit_numbers)!=0 and self.commit_numbers[0].isdigit():
+            return (int(self.commit_numbers[0])+1)
+        else:
+            return 1
+    def _log_messages_local(self,output=False):
+        return self._run_local_command(self.commands["git-log"],output)
     def status_local(self):
-        self._run_local_command(self.commands["git-status"])
+        return self._run_local_command(self.commands["git-status"])
     def add_local(self):
-        self._run_local_command(self.commands["git-add"])
+        return self._run_local_command(self.commands["git-add"])
     def commit_local(self):
-        self._run_local_command(self.commands["git-commit"])
-    def _log_messages_local(self):
-        self._run_local_command(self.commands["git-log"])
+        return self._run_local_command(self.commands["git-commit"]+str(self._get_commit_number()))
     #def push_local(self):
     #def pull_remote(self):
     
