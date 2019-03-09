@@ -36,11 +36,11 @@ class Git:
         ssh_stdin = ssh_stdout = ssh_stderr = None
         try:
             ssh.connect(os.getenv("SSH_ADDRESS"), username=os.getenv("SSH_USERNAME"), password=os.getenv("SSH_PASSWORD"))
-            ssh_stdin, ssh_stdout, ssh_stderr = ssh.exec_command(os.getenv("SSH_TEST_COMMAND"))
+            #ssh_stdin, ssh_stdout, ssh_stderr = ssh.exec_command(os.getenv("SSH_TEST_COMMAND"))
         except Exception as e:
             sys.stderr.write("SSH connection error: {0}".format(e).decode('utf-8'))
         if ssh_stdout:
-            sys.stdout.write(ssh_stdout.read().decode('utf-8'))
+            #sys.stdout.write(ssh_stdout.read().decode('utf-8'))
             return ssh
         else:
             return False
