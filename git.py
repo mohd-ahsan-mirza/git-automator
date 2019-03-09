@@ -1,7 +1,9 @@
+# Make sure the repo on github has been initialized
+# It is recommeded that you make the first commit manually with message "Commit 1"
+# Make sure the repo has been initialized and pulled on both local and remote server
+# Make sure the remote origin url is set with password
+# https://USERNAME:PASS@github.com/USERNAME/REPONAME.git
 import subprocess
-#p = subprocess.Popen('cd ../../;ls;', shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
-#for line in p.stdout.readlines():
-    #print line,
 import paramiko
 import sys
 import os
