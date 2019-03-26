@@ -12,4 +12,4 @@ https://USERNAME:PASS@github.com/USERNAME/REPONAME.git<br/>
 It is recommended that you do the first push manually to set the upstream branch<br/>
 git push --set-upstream origin master<br/>
 if you are adding any files directly on github please follow the commit message convention<br/>
-Note: If there are multiple people modifying the same branch this automator might nor work<br/>
+Note: If there are multiple people modifying the same branch this automator might not work<br/>
