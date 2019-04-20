@@ -11,14 +11,14 @@ It is recommeded that you make the first commit manually with message "Commit 1"
 Make sure the repo has been initialized and pulled on both local and remote server
 ### Step 5
 Make sure the remote origin url is set with password
-'''
+```
 https://USERNAME:PASS@github.com/USERNAME/REPONAME.git<br/>
-'''
+```
 ### Step 6
 Set the upstream branch
-'''
+```
 git push --set-upstream origin master
-'''
+```
 # Notes
 If you are adding any files directly on github please follow the commit message convention
 ### Warning: If there are multiple people modifying the same branch this automator might not work
