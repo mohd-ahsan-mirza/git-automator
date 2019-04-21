@@ -12,7 +12,7 @@ Make sure the repo has been initialized and pulled on both local and remote serv
 ### Step 5
 Make sure the remote origin url is set with password
 ```
-https://USERNAME:PASS@github.com/USERNAME/REPONAME.git<br/>
+https://USERNAME:PASS@github.com/USERNAME/REPONAME.git
 ```
 ### Step 6
 Set the upstream branch
