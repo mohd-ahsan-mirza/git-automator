@@ -1,5 +1,5 @@
 # Description
-This tool automates git add, commit, push and pull on a remote server. I built this tool to avoid copy pasting changes to my personal site
+This tool automates git add, commit, push on a local machine and pull on a remote server. I built this tool to avoid copy pasting changes to my personal site
 # Setup
 ### Step 1
 Copy the .env.template to .env and fill out the mandatory fields in the file
