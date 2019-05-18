@@ -7,9 +7,10 @@ Add the following line in .gitignore
 ```
 git-automator/
 ```
-### Make sure git-automator doesn't get commited to your git repo
 
 Pull this project into your desired repository on your machine
+
+### Make sure git-automator doesn't get commited to your git repo
 
 Copy the .env.template to .env and fill out the mandatory fields in the file
 
