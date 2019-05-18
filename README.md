@@ -7,7 +7,6 @@ Add the following line in .gitignore
 ```
 git-automator/
 ```
-
 Pull this project into your desired repository on your machine
 
 ### Make sure git-automator doesn't get commited to your git repo
