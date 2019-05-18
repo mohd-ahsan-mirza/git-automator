@@ -1,3 +1,4 @@
+from lib import *
 from git import *
 git = Git()
 #git._log_messages_local(true)
@@ -7,4 +8,4 @@ git.status_local()
 git.add_local()
 git.commit_local()
 git.push_local()
-git.pull_remote()
+git.deploy_to_remote_server()
