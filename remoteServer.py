@@ -1,5 +1,6 @@
 from lib import *
-class remoteServer:
+from Remote import *
+class remoteServer(Remote):
     def __init__(self):
         self.ssh = self._setup_ssh_connection()
     def _setup_ssh_connection(self):
@@ -7,7 +8,7 @@ class remoteServer:
         ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
         ssh_stdin = ssh_stdout = ssh_stderr = None
         try:
-            ssh.connect(os.getenv("SSH_ADDRESS"), username=os.getenv("SSH_USERNAME"), password=os.getenv("SSH_PASSWORD"))
+            ssh.connect(os.getenv("SSH_ADDRESS"), username=os.getenv("SSH_USERNAME"), password=self.retrieve_password("private-server"))
             ssh_stdin, ssh_stdout, ssh_stderr = ssh.exec_command(os.getenv("SSH_TEST_COMMAND"))
         except Exception as e:
             sys.stderr.write("SSH connection error: {0}".format(e).decode('utf-8'))
