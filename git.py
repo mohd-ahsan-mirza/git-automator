@@ -11,6 +11,7 @@ class Git(remoteServer):
             "git-commit": "git commit -m ",
             "git-log": "git log --pretty=oneline --abbrev-commit",
             "git-push": "git push origin",
+            "git-pull": "git pull origin",
             "directory-list":"ls",
         }
         self.commit_numbers = []
