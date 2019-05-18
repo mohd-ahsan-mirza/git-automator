@@ -1,7 +1,9 @@
 from lib import *
+#Import package
 from remoteServer import *
 class Git(remoteServer):
     def __init__(self):
+        #Initiate base classes
         remoteServer.__init__(self)
         self.commands = {
             "git-status":"git status",
@@ -10,7 +12,6 @@ class Git(remoteServer):
             "git-log": "git log --pretty=oneline --abbrev-commit",
             "git-push": "git push origin",
             "directory-list":"ls",
-            "git-pull": "git pull origin" # Remote Server
         }
         self.commit_numbers = []
         for line in self._log_messages_local().stdout.readlines():
