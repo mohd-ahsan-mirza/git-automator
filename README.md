@@ -9,6 +9,8 @@ git-automator/
 ```
 Pull this project into your desired repository on your machine
 
+[Pull this repository](https://github.com/mohd-ahsan-mirza/redis-local-encryptor)
+
 ### Make sure git-automator doesn't get commited to your git repo
 
 Copy the .env.template to .env and fill out the mandatory fields in the file
