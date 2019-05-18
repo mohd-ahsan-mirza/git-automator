@@ -3,6 +3,14 @@ This tool automates git add, commit, push on a local machine and pull on a remot
 
 # Local
 
+Add the following line in .gitignore
+```
+git-automator/
+```
+### Make sure git-automator doesn't get commited to your git repo
+
+Pull this project into your desired repository on your machine
+
 Copy the .env.template to .env and fill out the mandatory fields in the file
 
 Make sure the repo on github has been created
