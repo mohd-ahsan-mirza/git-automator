@@ -2,6 +2,7 @@ from lib import *
 from remoteServer import *
 class Git(remoteServer):
     def __init__(self):
+        remoteServer.__init__(self)
         self.commands = {
             "git-status":"git status",
             "git-add":"git add .",
