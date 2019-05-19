@@ -9,7 +9,6 @@ Add the following line in .gitignore
 ```
 git-automator/
 ```
-Pull this project into your desired repository on your machine
 
 [Pull this repository](https://github.com/mohd-ahsan-mirza/redis-local-encryptor)
 
