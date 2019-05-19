@@ -12,6 +12,9 @@ class Git(remoteServer):
             "git-log": "git log --pretty=oneline --abbrev-commit",
             "git-push": "git push origin",
             "git-pull": "git pull origin",
+            "git-modified-files": "git diff --name-only",
+            "git-add-files": "git ls-files --others --exclude-standard",
+            "git-deleted-files": "git ls-files --deleted",
             "directory-list":"ls",
         }
         self.commit_numbers = []
@@ -49,5 +52,13 @@ class Git(remoteServer):
         return self._run_local_command(self.commands["git-push"]+" "+os.getenv("WORKING_BRANCH"))
     def pull_local(self):
         return self._run_local_command(self.commands["git-pull"]+" "+os.getenv("WORKING_BRANCH"))
+    def get_added_files(self):
+        return self._run_local_command(self.commands["git-add-files"])
+    def get_modified_files(self):
+        return self._run_local_command(self.commands["git-modified-files"])
+    def get_deleted_files(self):
+        return self._run_local_command(self.commands["git-deleted-files"])
+
+
 
     

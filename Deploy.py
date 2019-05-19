@@ -1,6 +1,7 @@
 from lib import *
 from git import *
-class Deploy(Git):
+from awss3 import *
+class Deploy(Git,awss3):
     def __init__(self):
         self.git = Git()
     def push_to_git(self):

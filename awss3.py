@@ -4,7 +4,8 @@ import boto3
 from botocore.exceptions import ClientError
 class awss3(Remote):
     def __init__(self):
-        self.s3 = boto3.client('s3')
+        if os.getenv("REMOTE_ENV") == "AWS":
+            self.s3 = boto3.client('s3')
     #def get_list_of_modified_files
     def upload_file(self,file_name, bucket):
         object_name = file_name
