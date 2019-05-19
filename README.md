@@ -28,11 +28,28 @@ Make sure the remote origin url is set with password
 https://USERNAME:PASS@github.com/USERNAME/REPONAME.git
 ```
 
+Edit ```~/.bash_profile```
+
+Add the following line
+```
+alias deploy="cd git-automator;python3 run.py;cd ../"
+```
+Then run the following command on the terminal to load the above changes without closing the terminal
+```
+source ~/.bash_profile
+```
+
 # Remote Server
 Set the upstream branch
 ```
 git push --set-upstream origin master
 ```
+
+Deploy command
+```
+deploy
+```
+### You have to be inside your project repo on your machine for the above command to work
 
 # AWS
 Configure AWS account on your CLI using ```aws configure```
@@ -42,6 +59,16 @@ pip3 install boto3
 In your AWS account create a test and a production bucket
 
 Add those bucket names in the .env file
+
+Deploy (Test)
+```
+deploy test
+```
+Deploy (Production)
+```
+deploy prod
+```
+### You have to be inside your project repo on your machine for the above command to work
 
 # Notes
 If you are adding any files directly on github please follow the commit message convention
