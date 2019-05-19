@@ -1,7 +1,8 @@
 from lib import *
 #Import package
 from remoteServer import *
-class Git(remoteServer):
+from awss3 import *
+class Git(remoteServer,awss3):
     def __init__(self):
         #Initiate base classes
         remoteServer.__init__(self)
