@@ -39,7 +39,7 @@ Configure AWS account on your CLI using ```aws configure```
 ```
 pip3 install boto3
 ```
-In your AWS account create a test and a production bucket
+In your AWS account create a test and a production bucket<br/>
 Add those bucket names in the .env file
 
 # Notes
