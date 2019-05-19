@@ -6,7 +6,8 @@ if os.getenv("REMOTE_ENV") == 'remote-server':
     deploy.deploy_to_remote_server()
     exit()
 if os.getenv("REMOTE_ENV") == "AWS":
-    print(deploy.get_added_files())
+    print("-----Modified files---------")
+    deploy.get_modified_files()
     exit()
 print("No Remote environment selected")
 exit()
