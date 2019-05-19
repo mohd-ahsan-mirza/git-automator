@@ -2,7 +2,8 @@ from lib import *
 from Remote import *
 class remoteServer(Remote):
     def __init__(self):
-        self.ssh = self._setup_ssh_connection()
+        if os.getenv("REMOTE_ENV") == "remote-server":
+            self.ssh = self._setup_ssh_connection()
     def _setup_ssh_connection(self):
         ssh = paramiko.SSHClient()
         ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
