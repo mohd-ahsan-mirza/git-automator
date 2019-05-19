@@ -1,8 +1,7 @@
 from lib import *
 #Import package
 from remoteServer import *
-from awss3 import *
-class Git(remoteServer,awss3):
+class Git(remoteServer):
     def __init__(self):
         #Initiate base classes
         remoteServer.__init__(self)
@@ -43,6 +42,11 @@ class Git(remoteServer,awss3):
             return "'Commit 1'"
     def _log_messages_local(self,output=False):
         return self._run_local_command(self.commands["git-log"],output)
+    def _convert_shell_output_to_list(self,result):
+        resultArray = []
+        for filename in result.stdout.readlines():
+            resultArray.append(filename.decode().strip("\n"))
+        return resultArray
     def status_local(self):
         return self._run_local_command(self.commands["git-status"])
     def add_local(self):
@@ -53,12 +57,15 @@ class Git(remoteServer,awss3):
         return self._run_local_command(self.commands["git-push"]+" "+os.getenv("WORKING_BRANCH"))
     def pull_local(self):
         return self._run_local_command(self.commands["git-pull"]+" "+os.getenv("WORKING_BRANCH"))
-    def get_added_files(self):
-        return self._run_local_command(self.commands["git-add-files"])
-    def get_modified_files(self):
-        return self._run_local_command(self.commands["git-modified-files"])
-    def get_deleted_files(self):
-        return self._run_local_command(self.commands["git-deleted-files"])
+    def get_added_files(self,output=False):
+        result = self._run_local_command(self.commands["git-add-files"],output)
+        return self._convert_shell_output_to_list(result)
+    def get_modified_files(self,output=False):
+        result =  self._run_local_command(self.commands["git-modified-files"],output)
+        return self._convert_shell_output_to_list(result)
+    def get_deleted_files(self,output=False):
+        result = self._run_local_command(self.commands["git-deleted-files"],output)
+        return self._convert_shell_output_to_list(result)
 
 
 

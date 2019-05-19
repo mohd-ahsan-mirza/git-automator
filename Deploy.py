@@ -1,8 +1,10 @@
 from lib import *
 from git import *
-class Deploy(Git):
+from awss3 import *
+class Deploy(Git,awss3):
     def __init__(self):
         self.git = Git()
+        self.awss3 = awss3()
     def push_to_git(self):
         self.git.pull_local()
         self.git.status_local()
@@ -11,3 +13,11 @@ class Deploy(Git):
         self.git.push_local()
     def deploy_to_remote_server(self):
         self.git.deploy_to_remote_server()
+    def deploy_to_awss3(self):
+        files_to_upload = self.git.get_added_files() + self.git.get_modified_files()
+        print("-------Files to Upload----")
+        print(files_to_upload)
+        files_to_delete = self.get_deleted_files()
+        print("----Files to Delete------")
+        print(files_to_delete)
+        
