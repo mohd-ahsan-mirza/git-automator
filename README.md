@@ -3,6 +3,8 @@ This tool automates git add, commit, push on a local machine and pull on a remot
 
 # Local
 
+Pull this repo inside your project with the same folder as the repo name ```git-automator```
+
 Add the following line in .gitignore
 ```
 git-automator/
