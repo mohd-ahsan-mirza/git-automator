@@ -8,7 +8,7 @@ class remoteServer(Remote):
         ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
         ssh_stdin = ssh_stdout = ssh_stderr = None
         try:
-            ssh.connect(os.getenv("SSH_ADDRESS"), username=os.getenv("SSH_USERNAME"), password=self.retrieve_password("private-server"))
+            ssh.connect(os.getenv("SSH_ADDRESS"), username=os.getenv("SSH_USERNAME"), password=self.retrieve_password("Retrieving password for server","private-server"))
             ssh_stdin, ssh_stdout, ssh_stderr = ssh.exec_command(os.getenv("SSH_TEST_COMMAND"))
         except Exception as e:
             sys.stderr.write("SSH connection error: {0}".format(e).decode('utf-8'))
