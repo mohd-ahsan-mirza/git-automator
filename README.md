@@ -13,6 +13,7 @@ Pull this project into your desired repository on your machine
 
 Add the absolute path of ``` run.py ``` as value of ``` PASSWORD_RETRIEVAL_COMMAND ``` in .env file
 ### Make sure git-automator doesn't get commited to your git repo
+Add ```git-automator/``` in .gitignore
 
 Copy the .env.template to .env and fill out the mandatory fields in the file
 
@@ -32,6 +33,14 @@ Set the upstream branch
 ```
 git push --set-upstream origin master
 ```
+
+# AWS
+Configure AWS account on your CLI using ```aws configure```
+```
+pip3 install boto3
+```
+In your AWS account create a test and a production bucket
+Add those bucket names in the .env file
 
 # Notes
 If you are adding any files directly on github please follow the commit message convention
