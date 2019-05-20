@@ -20,6 +20,9 @@ Add the absolute path of ``` run.py ``` as value of ``` PASSWORD_RETRIEVAL_COMMA
 Make sure the repo on github has been created
 
 It is recommeded that you make the first commit manually with message "Commit 1"
+```
+git commit --allow-empty -m "Commit 1"
+```
 
 Make sure the repo has been initialized and pulled on both local and remote server
 
