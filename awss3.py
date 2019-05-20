@@ -9,10 +9,10 @@ class awss3(Remote):
     def upload_file(self,file_name, bucket):
         object_name = file_name
         try:
-            response = self.s3.upload_file(file_name, bucket, object_name)
+            response = self.s3.upload_file(os.getenv("RELATIVE_PATH_TO_PROJECT_DIRECTORY") + file_name, bucket, object_name)
         except ClientError as e:
             print(e)
             return False
-        print("FILE" + str(file_name) + "UPLOADED SUCESSFULLY TO BUCKET" + str(bucket))
+        print("FILE" + str(file_name) + " UPLOADED SUCESSFULLY TO BUCKET " + str(bucket))
         return True
     

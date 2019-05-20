@@ -23,5 +23,5 @@ class Deploy(Git,awss3):
         bucket = os.getenv("TEST_BUCKET")
         #if env == "Prod"
         for filename in files_to_upload:
-            self.awss3.upload_file("../"+filename,bucket)
+            self.awss3.upload_file(filename,bucket)
 
