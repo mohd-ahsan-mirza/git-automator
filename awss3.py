@@ -9,7 +9,14 @@ class awss3(Remote):
     def upload_file(self,file_name, bucket):
         object_name = file_name
         try:
-            response = self.s3.upload_file(os.getenv("RELATIVE_PATH_TO_PROJECT_DIRECTORY") + file_name, bucket, object_name)
+            response = self.s3.put_object(
+                ACL ='public-read',
+                Body = open(os.getenv("RELATIVE_PATH_TO_PROJECT_DIRECTORY") + file_name,"r").read(),
+                Bucket = bucket,
+                Key = object_name,
+                CacheControl="max-age=0,no-cache,no-store,must-revalidate",
+                ContentType="text/"+splitext(file_name)[1].strip("."),
+            )
         except ClientError as e:
             print(e)
             return False
