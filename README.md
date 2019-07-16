@@ -54,7 +54,7 @@ deploy
 ```
 ### You have to be inside your project repo on your machine for the above command to work
 
-# AWS
+# AWS S3
 Configure AWS account on your CLI using ```aws configure```
 ```
 pip3 install boto3
